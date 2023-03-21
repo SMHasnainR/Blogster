@@ -5,27 +5,31 @@ import BlogList from '../../components/Home/BlogList'
 import Header from '../../components/Home/Header/index'
 import Hero from '../../components/Home/Hero/index'
 import SearchBar from '../../components/Home/SearchBar/index'
+import Spinner from 'react-bootstrap/Spinner'
+import 'bootstrap/dist/css/bootstrap.css';
 // import { blogList } from '../../config/data'
 
 const Home = () => {
 
     const [blogs, setBlogs] = useState([]);
     const [searchKey, setSearchKey] = useState('');
+    const [loading, setLoading] = useState(false);
 
-    // axios.defaults.withCredentials = true;
     let http = axios.create({
         baseURL: 'http://localhost:8000',
         headers: {
             'X-Requested-With': 'XMLHttpRequest'
         },
-        credentials: true,
     });
 
     useEffect(() => {
+        setLoading(true);
+        // Getting Posts data from API 
         http.get('/api/posts').then((response) => {
-            console.log(response.data.data);
+            setLoading(false);
             setBlogs(response.data.data);
         });
+
     },[]);
 
     // Search Submit
@@ -47,27 +51,33 @@ const Home = () => {
 
     return (
     <div>
-    
+            
+        {/*  Page Header */}
+        <Header position='fixed' />
+
+        {/*  Hero Section */}
+        <Hero />
         
-    {/*  Page Header */}
-    <Header />
+        {/*  Search Bar */}
+        <SearchBar 
+            value={searchKey} 
+            clearSearch={handleClearSearch}
+            formSubmit={handleSearchSubmit} 
+            handleSearchKey={(e)=> setSearchKey(e.target.value)} 
+        />
 
-    {/*  Hero Section */}
-    <Hero />
-    
-    {/*  Search Bar */}
-    <SearchBar 
-        value={searchKey} 
-        clearSearch={handleClearSearch}
-        formSubmit={handleSearchSubmit} 
-        handleSearchKey={(e)=> setSearchKey(e.target.value)} 
-    />
-    <div className="container">
-        {/*  Blog List & Empty List */}
-        {  !blogs.length ? <EmptyList /> : <BlogList blogs={blogs} />}   
-    </div>
-
-
+        <div className="container">
+        
+            {/* Blog List & Empty List */}
+            { loading ? 
+            <div className='text-center py-5'>
+                <Spinner animation="border" />
+            </div> :
+            !loading && !blogs.length ? <EmptyList /> : 
+            <BlogList blogs={blogs} />
+            }
+        
+        </div>
     </div>
   )
 }

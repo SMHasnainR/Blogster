@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './style.css';
 
-function Header() {
+function Header(props) {
 
   const [navClass, setNavClass] = useState('');
 
@@ -15,7 +15,7 @@ function Header() {
 
   return (
 
-    <header className={navClass}>
+    <header className={'navbar '+ navClass + ' position-'+props.position } >
       <nav className='nav container'>
         <a href="#" className='logo'><span>Blog</span>ster </a>
         <a href="#" className='btn-primary'>

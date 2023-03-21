@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import Chip from '../../components/common/Chip';
 import EmptyList from '../../components/common/EmptyList';
+import Header from '../../components/Home/Header';
 import { blogList } from '../../config/data';
 import './style.css';
 
@@ -21,9 +22,14 @@ const Blog = () => {
 
   return (
     <div>
+
+      {/*  Page Header */}
+      <Header position='sticky' />
+
       <Link className='blog-goBack' to='/'> 
         <span>&#8592;</span> Go Back 
       </Link>
+      
       { 
         blog ? 
         <div className='blog-wrap'>
