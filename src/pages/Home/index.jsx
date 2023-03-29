@@ -24,6 +24,7 @@ const Home = () => {
 
     useEffect(() => {
         setLoading(true);
+        
         // Getting Posts data from API 
         http.get('/api/posts').then((response) => {
             setLoading(false);

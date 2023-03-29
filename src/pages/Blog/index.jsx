@@ -1,22 +1,39 @@
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import Chip from '../../components/common/Chip';
 import EmptyList from '../../components/common/EmptyList';
 import Header from '../../components/Home/Header';
+import Spinner from 'react-bootstrap/Spinner'
 import { blogList } from '../../config/data';
 import './style.css';
 
 const Blog = () => {
   const { id } = useParams();
   const [blog, setBlog] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  let http = axios.create({
+    baseURL: 'http://localhost:8000',
+    headers: {
+        'X-Requested-With': 'XMLHttpRequest'
+    },
+  });
 
   useEffect(() => {
-    let blog = blogList.find(blog => blog.id === parseInt(id));
+    setLoading(true);
 
+    // Getting Posts data from API 
+    http.get('/api/posts/'+id).then((response) => {
+      setLoading(false);
+      setBlog(response?.data?.data);
+    });
 
-    if(blog){
-      setBlog(blog);
-    }
+    // let blog = blogList.find(blog => blog.id === parseInt(id));
+
+    // if(blog){
+    //   setBlog(blog);
+    // }
 
   }, [])
 
@@ -31,7 +48,7 @@ const Blog = () => {
       </Link>
       
       { 
-        blog ? 
+        !loading ? ( blog ? 
         <div className='blog-wrap'>
           <header>
             <p className='blog-date'> Published {blog.createdAt} </p>
@@ -48,7 +65,10 @@ const Blog = () => {
           </header>
           <img src={blog.cover} alt="cover" />
           <p className='blog-desc'>{blog.description}</p>
-        </div> : <EmptyList />
+        </div> : <EmptyList />) : 
+        <div className='text-center py-5'>
+            <Spinner animation="border" />
+        </div>
        }
     </div>
   )
