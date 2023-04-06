@@ -18,22 +18,28 @@ function BlogItem({
 {
   return (
     <div className="blogItem-wrap">
-        <img src={cover} alt="Image cover" className='blogItem-cover' />
-        
-        <Chip label={category} />
-        
-        <h3>{title}</h3>
-        <p className="blogItem-desc">{description}</p>
+        <div className='blogItem-head'>
+            <img src={cover} alt="Image cover" className='blogItem-cover' />
+            
+            <div class='blogItem-body'>
+                <Chip label={category} />
+                
+                <h4> 
+                    <Link className="blogItem-link" to={`/blog/${id}`}> {title} </Link>
+                </h4>
+                
+                {/* <p className="blogItem-desc">{description}</p> */}
+
+            </div>
+        </div>
 
         <footer>
             <div className="blogItem-author">
                 <img src={authorAvatar} alt="avatar" />
-                <div>
-                    <h6>{authorName}</h6>
-                    <p>{createdAt}</p>
-                </div>
+                <p>{authorName}</p>
             </div>
-            <Link className="blogItem-link" to={`/blog/${id}`}> &#x2192; </Link>
+            <p>{createdAt}</p>
+            {/* <Link className="blogItem-link" to={`/blog/${id}`}> &#x2192; </Link> */}
         </footer>
     </div>
   )
