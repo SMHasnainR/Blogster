@@ -14,6 +14,7 @@ const Home = () => {
     const [blogs, setBlogs] = useState([]);
     const [searchKey, setSearchKey] = useState('');
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     let http = axios.create({
         baseURL: 'http://localhost:8000',
@@ -29,7 +30,13 @@ const Home = () => {
         http.get('/api/posts').then((response) => {
             setLoading(false);
             setBlogs(response.data.data);
+        })
+        .catch((error) => {
+            setLoading(false);
+            console.log(error);
+            setError(error.message);
         });
+        
 
     },[]);
 
@@ -77,6 +84,8 @@ const Home = () => {
             !loading && !blogs.length ? <EmptyList /> : 
             <BlogList blogs={blogs} />
             }
+
+            { error ? <div className='error text-danger d-flex justify-content-center'> {error} </div> : '' }
         
         </div>
     </div>

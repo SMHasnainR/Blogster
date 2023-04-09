@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './style.css';
+import { Link } from 'react-router-dom';
 
 function Header(props) {
 
@@ -17,10 +18,13 @@ function Header(props) {
 
     <header className={'navbar '+ navClass + ' position-'+props.position } >
       <nav className='nav container'>
-        <a href="#" className='logo'><span>Blog</span>ster </a>
-        <a href="#" className='btn-primary'>
+        <Link to='/#' className='logo'>
+          <span>Blog</span>ster
+        </Link>
+
+        <Link to='/login' className='btn-primary'>
           Login
-        </a>
+        </Link>
       </nav>
     </header>
   )
