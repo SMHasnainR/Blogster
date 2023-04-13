@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import './style.css';
 import Header from '../../components/Home/Header';
 
-const Login = () => {
+const Auth = () => {
   const [loading, setLoading] = useState(false);
 
   let http = axios.create({
@@ -26,17 +26,25 @@ const Login = () => {
   }, [])
 
   return (
-    <div>
-
-      {/*  Page Header */}
-      <Header position='sticky' />
-
-      <Link className='blog-goBack' to='/'> 
-        <span>&#8592;</span> Go Back 
-      </Link>
-      
+    <div className='auth-wrapper'>
+      <div className='left-side col-md-6'>
+        <div className="logo">
+          <Link to='/#' className='logo'>
+            <span>Blog</span>ster
+          </Link>
+        </div>
+      </div>
+      <div className='right-side col-md-6'>
+        <div className="phone">+92 3132898968</div>
+        <div className='image'>
+          <img src="/assets/images/Saly-10.png" alt="" />
+        </div>
+        <div className='auth-text'>
+          Sign in to Blogster
+        </div>
+      </div>
     </div>
   )
 }
 
-export default Login
+export default Auth
