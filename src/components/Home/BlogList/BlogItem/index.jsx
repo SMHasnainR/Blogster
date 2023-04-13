@@ -21,7 +21,7 @@ function BlogItem({
         <div className='blogItem-head'>
             <img src={cover} alt="Image cover" className='blogItem-cover' />
             
-            <div class='blogItem-body'>
+            <div className='blogItem-body'>
                 <Chip label={category} />
                 
                 <h4> 

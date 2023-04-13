@@ -6,6 +6,10 @@ import Header from "../../components/Home/Header";
 
 const Auth = () => {
   const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
 
   let http = axios.create({
     baseURL: "http://localhost:8000",
@@ -14,15 +18,46 @@ const Auth = () => {
     },
   });
 
-  useEffect(() => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     setLoading(true);
+    console.log(formData);
 
-    // Getting Posts data from API
-    // http.get('/api/posts/'+id).then((response) => {
-    //   setLoading(false);
-    //   setBlog(response?.data?.data);
-    // });
-  }, []);
+    http
+    .post("/api/login", formData)
+    .then((res) => {
+        console.log(res);
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+        setLoading(false);
+        window.location.href = "/";
+      })
+    .catch((err) => {
+        setLoading(false);
+        console.log(err);
+      });
+  }
+
+  const inputs = [
+    {
+      id: 1,
+      label: "Email",
+      name: "email",
+      type: "email",
+      placeholder: "Email",
+      value: formData.email,
+      onChange: (e) => setFormData({ ...formData, email: e.target.value }),
+    },
+    {
+      id: 2,
+      label: "Password",
+      name: "password",
+      type: "password",
+      placeholder: "Password",
+      value: formData.password,
+      onChange: (e) => setFormData({ ...formData, password: e.target.value }),
+    },
+  ];
 
   return (
     <div className="auth-wrapper">
@@ -36,37 +71,49 @@ const Auth = () => {
         {/* <div className="form"> */}
 
         {/* </div> */}
-        <form action="">
-            <h3>Sign In</h3>
+        <form action="" onSubmit={handleSubmit}>
+          <h3>Sign In</h3>
           <div className="sub-desc">
             <p>If you don't have account register</p>
             <p>
-              You can <span> <Link to={'/register'}> Register here !</Link></span>
+              You can{" "}
+              <span>
+                {" "}
+                <Link to={"/register"}> Register here !</Link>
+              </span>
             </p>
           </div>
-          <div className="form-group">
-            <label htmlFor="email" className="form-text">Email</label>
-            <input type="email" className="form-control" placeholder="Enter your email address" />
-          </div>
-          <div className="form-group">
-            <label htmlFor="password" className="form-text" placeholder="Enter your Password">Password</label>
-            <input
-              type="password"
-              className="form-control"
-              placeholder="Password"
-            />
-          </div>
+
+          {/* Form inputs */}
+          {inputs.map((input) => (
+            <div key={input.id} className="form-group">
+              <label htmlFor={input.id} className="form-text">
+                {input.label}
+              </label>
+              <input
+                type={input.type}
+                id={input.id}
+                name={input.name}
+                className="form-control"
+                placeholder={input.placeholder}
+                value={formData[input.name]}
+                onChange={input.onChange}
+              />
+            </div>
+          ))}
+
           <div className="d-flex justify-content-between my-3">
             <div className="d-flex ">
-              <input type="checkbox" className="form-check-input" name="remember_me" />
+              <input
+                type="checkbox"
+                className="form-check-input"
+                name="remember_me"
+              />
               <label className="form-check-label px-2">Remember Me</label>
             </div>
             <div className="">
-              <div className="form-text">
-                 forget password?
-              </div> 
+              <div className="form-text">forget password?</div>
             </div>
-
           </div>
           <div className="form-group">
             <button type="submit" className="btn btn-auth">
@@ -80,9 +127,7 @@ const Auth = () => {
         <div className="image">
           <img src="/assets/images/Saly-10.png" alt="" />
         </div>
-        <div className="auth-text">
-          Sign in to Blogster
-        </div>
+        <div className="auth-text">Sign in to Blogster</div>
         {/* <p>Unleash your creativity</p> */}
       </div>
     </div>
