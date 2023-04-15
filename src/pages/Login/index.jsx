@@ -2,9 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./style.css";
-import Header from "../../components/Home/Header";
 
-const Auth = () => {
+const Login = () => {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
@@ -20,7 +19,6 @@ const Auth = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
     console.log(formData);
 
     http
@@ -29,11 +27,9 @@ const Auth = () => {
         console.log(res);
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data.user));
-        setLoading(false);
         window.location.href = "/";
       })
     .catch((err) => {
-        setLoading(false);
         console.log(err);
       });
   }
@@ -134,4 +130,4 @@ const Auth = () => {
   );
 };
 
-export default Auth;
+export default Login;
