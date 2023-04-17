@@ -1,11 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import "./style.css";
-import Header from "../../components/Home/Header";
 
 const Register = () => {
-  const [loading, setLoading] = useState(false);
+  const [disableButton, setDisableButton] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -22,7 +20,6 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
     console.log(formData);
 
     http
@@ -34,7 +31,6 @@ const Register = () => {
         window.location.href = "/";
       })
     .catch((err) => {
-        setLoading(false);
         console.log(err);
       });
   }
@@ -135,7 +131,8 @@ const Register = () => {
             </div>
           </div>
           <div className="form-group">
-            <button type="submit" className="btn btn-auth">
+            <button type="submit" className="btn btn-auth" disabled  >
+            {/* { disableButton ? 'disabled' : '' } */}
               Register
             </button>
           </div>

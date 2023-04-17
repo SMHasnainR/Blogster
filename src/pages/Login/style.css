@@ -7,6 +7,12 @@
     padding: 22px;
     display: flex;
 }
+
+.auth-wrapper .error{
+    color: #cc0000;
+    text-align: center;
+}
+
 .left-side {
     display: flex;
     flex-direction: column;
@@ -18,8 +24,9 @@
 .btn-auth{
     background-color: #0C21C1;
     border-radius: 32px;
-    padding: 14px 190px;
+    padding: 14px 0px;
     color: #fff;
+    width: 100%;
 }
 
 .btn-auth:hover{

@@ -1,15 +1,17 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import "./style.css";
 
 const Login = () => {
-  const [loading, setLoading] = useState(false);
+  const [disableButton, setDisableButton] = useState(false);
+  const [error, setError] = useState('');
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-
+  const navigate = useNavigate();
+  // var disableButton = false;
   let http = axios.create({
     baseURL: "http://localhost:8000",
     headers: {
@@ -19,20 +21,27 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+
+    setDisableButton(true);
+    console.log(formData + " : " + disableButton);
 
     http
-    .post("/api/login", formData)
-    .then((res) => {
+      .post("/api/login", formData)
+      .then((res) => {
         console.log(res);
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data.user));
-        window.location.href = "/";
+        navigate('/');
       })
-    .catch((err) => {
+      .catch((err) => {
         console.log(err);
+        console.log(err.response.data.error);
+        setDisableButton(false);
+        setError(err.response.data.error);
       });
-  }
+  };
+
+  console.log(formData + " : " + disableButton);
 
   const inputs = [
     {
@@ -79,6 +88,9 @@ const Login = () => {
               </span>
             </p>
           </div>
+          <div className="error">
+            { error }
+          </div>
 
           {/* Form inputs */}
           {inputs.map((input) => (
@@ -112,8 +124,12 @@ const Login = () => {
             </div>
           </div>
           <div className="form-group">
-            <button type="submit" className="btn btn-auth">
-              Login
+            <button
+              type="submit"
+              className="btn btn-auth"
+              disabled={disableButton}
+            >
+              { disableButton ? 'Logging...' : 'Login'}
             </button>
           </div>
         </form>
