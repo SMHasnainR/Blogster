@@ -1,9 +1,9 @@
 import React from 'react'
 import './style.css'
 
-function Chip({label}) {
+function Chip({label, color}) {
   return (
-    <p className="chip">
+    <p className={`chip ${color}`}>
         {label}
     </p>
   )

@@ -36,7 +36,7 @@ const Blog = () => {
     // }
 
   }, [])
-
+  console.log(blog);
   return (
     <div>
 
@@ -51,9 +51,15 @@ const Blog = () => {
         !loading ? ( blog ? 
         <div className='blog-wrap'>
           <header>
-            <p className='blog-date'> Published {blog.createdAt} </p>
+            <Chip label={blog.category} color='primary' />
+
             <h1>{blog.title}</h1>
-            <div className='blog-subCategory'>
+            
+            <div className='d-flex mt-3'>
+              {blog.authorName}
+              <p className='blog-date'>{blog.createdAt} </p>
+            </div>
+            {/* <div className='blog-subCategory'>
               {
                 blog.subCategory.map( (category, index) => {
                   <div>
@@ -61,9 +67,12 @@ const Blog = () => {
                   </div>
                 })
               }
-            </div>
+            </div> */}
+
           </header>
-          <img src={blog.cover} alt="cover" />
+
+
+          <img className='blog-img' src={blog.cover} alt="cover" />
           <p className='blog-desc'>{blog.description}</p>
         </div> : <EmptyList />) : 
         <div className='text-center py-5'>

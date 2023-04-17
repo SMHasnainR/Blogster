@@ -22,7 +22,7 @@ function BlogItem({
             <img src={cover} alt="Image cover" className='blogItem-cover' />
             
             <div className='blogItem-body'>
-                <Chip label={category} />
+                <Chip label={category} color='secondary' />
                 
                 <h4> 
                     <Link className="blogItem-link" to={`/blog/${id}`}> {title} </Link>

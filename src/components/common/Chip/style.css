@@ -1,11 +1,19 @@
 .chip{
     font-size: 0.7rem;
     /* background-image: linear-gradient(to right, #6190e8, #a7bfe8); */
-    background-color: rgb(75, 107, 251,0.05);
-    color: #4B6BFB;
     padding: 0.3rem 0.5rem;
     width: fit-content;
     text-transform: capitalize;
     border-radius: 6px;
     margin: 16px 0; 
+}
+
+.chip.primary{
+    background-color: #4B6BFB;
+    color:white;
+}
+
+.chip.secondary{
+    background-color: rgb(75, 107, 251,0.05);
+    color: #4B6BFB;
 }
