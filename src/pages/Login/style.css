@@ -1,0 +1,93 @@
+/* @font-face {
+    font-family: Poppins;
+    src: url(sansation_light.woff);
+  }
+ */
+.auth-wrapper{
+    padding: 22px;
+    display: flex;
+}
+
+.auth-wrapper .error{
+    color: #cc0000;
+    text-align: center;
+}
+
+.left-side {
+    display: flex;
+    flex-direction: column;
+}
+.left-side form{
+    margin: auto 140px;
+}
+
+.btn-auth{
+    background-color: #0C21C1;
+    border-radius: 32px;
+    padding: 14px 0px;
+    color: #fff;
+    width: 100%;
+}
+
+.btn-auth:hover{
+    border-color: #0C21C1;
+    color: #0C21C1;
+    font-weight: 600;
+}
+
+.left-side form p{
+    margin: 0;
+}
+
+.left-side form .sub-desc{
+    margin: 25px 0px;
+}
+
+.form-group{
+    margin-top:50px;
+}
+
+.form-group label{
+    padding-left: 10px;
+}
+
+.form-group input{
+    border: 0px;
+    border-radius: 0px;
+    border-bottom: 2px solid #999999;
+}
+
+.logo{
+    padding: 10px;
+}
+
+.right-side{
+    background-color: #000842;
+    color: #fff;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.right-side .phone{
+    margin: 32px;
+    margin-bottom: 0px;
+    float: right;
+    align-self: end;
+}
+
+.right-side .image img{
+    height: 430px;
+}
+
+.right-side .image {
+    align-self: center;
+    margin: auto;
+}
+
+.auth-text{
+    font-size: 40px;
+    font-family: Poppins;
+    margin: 75px 100px;
+}
+

@@ -1,0 +1,43 @@
+.blog-wrap{
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.blog-goBack{
+    text-decoration: none;
+    font-size: 0.8em;
+    color: #a9a9a9;
+    font-weight: 500;
+    margin-bottom: 2em ;
+    display: block;
+}
+
+.blog-wrap header{
+    /* text-align: center */
+}
+
+.blog-date {
+    /* font-size: 0.8em; */
+    margin-left: 24px;
+    color: #a9a9a9;
+    font-weight: 500;
+}
+
+.blog-wrap img{
+    width: 100%;
+    border-radius: 12px;
+}
+
+.blog-subCategory{
+    display: flex;
+    justify-content: center;
+}
+
+.blog-subCategory div{
+    margin: 1rem;
+}
+
+.blog-desc{
+    padding: 1rem;
+    margin-top: 1.5rem;
+}
