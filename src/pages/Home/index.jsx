@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import EmptyList from '../../components/common/EmptyList'
 import BlogList from '../../components/Home/BlogList'
 import Header from '../../components/Home/Header/index'
+import Footer from '../../components/Home/Footer/index'
 import Hero from '../../components/Home/Hero/index'
 import SearchBar from '../../components/Home/SearchBar/index'
 import Spinner from 'react-bootstrap/Spinner'
@@ -88,6 +89,8 @@ const Home = () => {
             { error ? <div className='error text-danger d-flex justify-content-center'> {error} </div> : '' }
         
         </div>
+
+        <Footer />
     </div>
   )
 }
