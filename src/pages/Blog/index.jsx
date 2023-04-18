@@ -43,9 +43,6 @@ const Blog = () => {
       {/*  Page Header */}
       <Header position='sticky' />
 
-      <Link className='blog-goBack' to='/'> 
-        <span>&#8592;</span> Go Back 
-      </Link>
       
       { 
         !loading ? ( blog ? 
