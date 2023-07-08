@@ -11,8 +11,8 @@ function Header(props) {
 
   return (
 
-    <footer className='' >
-
+    <footer className='text-center' >
+      Footer
     </footer>
   )
 }

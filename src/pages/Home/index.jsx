@@ -8,6 +8,7 @@ import Hero from '../../components/Home/Hero/index'
 import SearchBar from '../../components/Home/SearchBar/index'
 import Spinner from 'react-bootstrap/Spinner'
 import 'bootstrap/dist/css/bootstrap.css';
+import MainLayout from '../../layouts/MainLayout'
 // import { blogList } from '../../config/data'
 
 const Home = () => {
@@ -60,37 +61,35 @@ const Home = () => {
 
     return (
     <div>
+        <MainLayout>
             
-        {/*  Page Header */}
-        <Header position='fixed' />
+            {/*  Hero Section */}
+            <Hero />
+            
+            {/*  Search Bar */}
+            <SearchBar 
+                value={searchKey} 
+                clearSearch={handleClearSearch}
+                formSubmit={handleSearchSubmit} 
+                handleSearchKey={(e)=> setSearchKey(e.target.value)} 
+            />
 
-        {/*  Hero Section */}
-        <Hero />
-        
-        {/*  Search Bar */}
-        <SearchBar 
-            value={searchKey} 
-            clearSearch={handleClearSearch}
-            formSubmit={handleSearchSubmit} 
-            handleSearchKey={(e)=> setSearchKey(e.target.value)} 
-        />
+            <div className="container">
+            
+                {/* Blog List & Empty List */}
+                { loading ? 
+                <div className='text-center py-5'>
+                    <Spinner animation="border" />
+                </div> :
+                !loading && !blogs.length ? <EmptyList /> : 
+                <BlogList blogs={blogs} />
+                }
 
-        <div className="container">
-        
-            {/* Blog List & Empty List */}
-            { loading ? 
-            <div className='text-center py-5'>
-                <Spinner animation="border" />
-            </div> :
-            !loading && !blogs.length ? <EmptyList /> : 
-            <BlogList blogs={blogs} />
-            }
-
-            { error ? <div className='error text-danger d-flex justify-content-center'> {error} </div> : '' }
-        
-        </div>
-
-        <Footer />
+                { error ? <div className='error text-danger d-flex justify-content-center'> {error} </div> : '' }
+            
+            </div>
+            
+        </MainLayout>
     </div>
   )
 }

@@ -37,7 +37,8 @@ function Header(props) {
         { isLoggedIn ? 
           <UserMenu>
             <DropDownMenu>
-              <DropDownItem> Acoount </DropDownItem>
+              <DropDownItem icon='' > Account </DropDownItem>
+              <DropDownItem icon='' func = {handleLogout}  > Logout </DropDownItem>
             </DropDownMenu>  
           </UserMenu>
           :

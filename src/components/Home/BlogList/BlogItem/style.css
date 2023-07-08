@@ -74,3 +74,10 @@
     color: #a9a9a9;
     font-weight: 600;
 }
+.blogItem-author:hover{
+    cursor: pointer;
+}
+
+.blogItem-author:hover p{
+    color: var(--primary-color);
+}

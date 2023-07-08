@@ -8,7 +8,7 @@ header.navbar{
 }
 
 header.active{
-    background-color: #fff;
+    background-color: var(--bg-color);
     box-shadow: 0 1px 4px hsl(0 4% 14% / 10%);
     transition: 0.4s;
 }
@@ -21,9 +21,9 @@ header.active{
 }
 
 .btn-primary{
-    background-color: #0f52ba;
-    border-color: #0f52ba;
-    color: #fff;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--bg-color);
     padding: 0.5rem 1rem;
     border-radius: 0.3rem;
     text-decoration: none;
@@ -37,5 +37,5 @@ header.active{
 }
 
 .logo span{
-    color: #0F52BA;
+    color: var(--primary-color);
 }
