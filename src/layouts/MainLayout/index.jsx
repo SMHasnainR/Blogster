@@ -2,14 +2,14 @@ import React from 'react'
 import Header from '../../components/Home/Header'
 import Footer from '../../components/Home/Footer/index'
 
-function MainLayout({children}) {
+function MainLayout(props) {
   return (
     <div>
       {/* Page Header */}
-      <Header position="fixed" />
-
+      <Header position={props.header} />
+     
       {/* Content */}
-      <main>{children}</main>
+      <main>{props.children}</main>
 
       {/* Page Footer */}
       <Footer />

@@ -5,7 +5,7 @@ import BlogList from '../../components/Home/BlogList'
 import EmptyList from '../../components/common/EmptyList'
 import axios from 'axios'
 
-function BlogListLayout({children}) {
+function BlogListLayout(props) {
     
     const [blogs, setBlogs] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -37,10 +37,10 @@ function BlogListLayout({children}) {
 
     return (
         <div>
-            <MainLayout>
+            <MainLayout header={props.header ?? 'fixed'} >
 
                 <div>
-                    {children}
+                    {props.children}
                 </div>
                 
                 <div className="container">

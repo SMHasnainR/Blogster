@@ -4,7 +4,7 @@ import Home from './pages/Home';
 import Blog from './pages/Blog';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import UserProfile from './pages/UserProfile';
+import UserBlogs from './pages/UserBlogs';
 
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
         <Route path='/blog/:id' element={<Blog />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
-        <Route path='/@:user' element={<UserProfile />} />
+        <Route path='/@:user' element={<UserBlogs />} />
       </Routes>
 
     </div>
