@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import './style.css';
 import { Link } from 'react-router-dom';
+import UserMenu from '../UserMenu';
+import DropDownMenu from '../../common/DropDownMenu';
+import DropDownItem from '../../common/DropDownItem';
 
 function Header(props) {
 
@@ -32,9 +35,17 @@ function Header(props) {
         </Link>
 
         { isLoggedIn ? 
-          <Link to='#' onClick={handleLogout} className='btn-primary'>
-            Logout
-          </Link> :
+          <UserMenu>
+            <DropDownMenu>
+              <DropDownItem icon='' > Account </DropDownItem>
+              <DropDownItem icon='' func = {handleLogout}  > Logout </DropDownItem>
+            </DropDownMenu>  
+          </UserMenu>
+          :
+          // <Link to='#' onClick={handleLogout} className='btn-primary'>
+          //   Logout
+          // </Link> 
+          // :
           <Link to='/login' className='btn-primary'>
             Login
           </Link>
