@@ -48,7 +48,7 @@ This project is licensed under the MIT License. You are free to use, modify, and
 We would like to express our gratitude to the open-source community for their valuable contributions and the various technologies and libraries used in building Blogster.
 
 ## Contact
-If you have any questions, suggestions, or feedback, feel free to reach out to us at [email@example.com].
+If you have any questions, suggestions, or feedback, feel free to reach out to us at [hasnainshoaib45@gmail.com].
 
 Thank you for using Blogster! Happy blogging!
 
